@@ -19,3 +19,15 @@
 [submodule "extensions/debugdevkit"]
 	path = extensions/debugdevkit
 	url = git://github.com/symphony/debugdevkit.git
+[submodule "extensions/members"]
+	path = extensions/members
+	url = git://github.com/bauhouse/members.git
+[submodule "extensions/asdc"]
+	path = extensions/asdc
+	url = git://github.com/pointybeard/asdc.git
+[submodule "extensions/library"]
+	path = extensions/library
+	url = git://github.com/bauhouse/library.git
+[submodule "extensions/reflectionfield"]
+	path = extensions/reflectionfield
+	url = git://github.com/rowan-lewis/reflectionfield.git
