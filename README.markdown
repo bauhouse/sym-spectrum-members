@@ -1,16 +1,77 @@
-# Symphony 2 #
+# Spectrum Members Core
 
-- Version: 2.0.5
-- Date: 27th July 2009
+This repository has been used to assemble the submodules necessary to build the [Spectrum Ensemble](http://github.com/bauhouse/sym-barebones/tree/master). It can be assembled with the following process:
+
+### Install Symphony and Spectrum Members Workspace via Git
+
+Clone my fork of the Symphony 2 repository
+
+	git clone git://github.com/bauhouse/symphony-2.git
+
+Rename the directory from `symphony-2` to `test`
+
+	mv symphony-2 test
+
+Change the current working directory to `test`
+
+	cd test
+
+Create a new branch called `spectrum-members`
+
+	git checkout -b spectrum-members
+
+Pull the changes from the GitHub repository for the spectrum-members branch
+
+	git pull origin spectrum-members
+
+Initialize the submodules
+
+	git submodule init
+
+Update the submodules
+
+	git submodule update
+	
+At this point, all the files required for a clean install are ready. The second branch that has been included as a submodule is the workspace, which is referring to a specific commit of the [spectrum-members branch](http://github.com/bauhouse/symphony-2/tree/spectrum-members) of my fork of the Symphony workspace repository. To clone this fork separately, use the following commands:
+
+	git clone git://github.com/bauhouse/workspace.git
+	cd workspace
+	git checkout -b spectrum-members
+	git pull origin spectrum-members
+
+## The Spectrum Members Ensemble
+
+The [Spectrum Members Ensemble](http://github.com/bauhouse/sym-spectrum-members/tree/master) is a modified installer for Symphony 2.0.4. The main difference between this install and the official version is that this version has been rebuilt from a clean install with exactly the same structure as the default Spectrum theme.
+
+## Install
+
+The Spectrum Members Ensemble repository brings together the [Symphony 2.0.4](http://github.com/symphony/symphony-2/tree/master) core application, the required extensions and the [Spectrum workspace](http://github.com/bauhouse/workspace/tree/spectrum-members) to simplify the install process. This installer provides a single ZIP archive or a single Git command to provide all the files necessary for installation. Refer to the README file for the [Spectrum workspace](http://github.com/bauhouse/workspace/tree/spectrum-members) for install instructions using Git to bring all the different source repositories together.
+
+### Install from Spectrum Members Ensemble ZIP Archive
+
+Go to the [Downloads](http://github.com/bauhouse/workspace/downloads) page to download the ZIP file. This is the simplest, if you want to avoid using Git altogether.
+
+### Install Spectrum Members Ensemble via Git
+
+This repository has been created to make the installation as simple as possible. A single Git command will provide all that you need:
+
+	git clone git://github.com/bauhouse/sym-spectrum-members.git
+
+That should be all. Install Symphony as usual. (Find the instructions at the [official Symphony 2 repository](http://github.com/symphony/symphony-2).) For convenience, they have been included below:
+
+## Symphony 2 ##
+
+- Version: 2.0.4
+- Date: 9th July 2009
 - Github Repository: <http://github.com/symphony/symphony-2/tree/master>
 
 
 ## Synopsis
 
 Symphony is a `PHP` & `MySQL` based CMS that utilises `XML` and `XSLT` as its core 
-technologies. This repository represents version 2.0.5 and is considered stable.
+technologies. This repository represents version 2.0.3 and is considered stable.
 
-Visit the forum at <http://symphony-cms.com/community/>
+Visit the forum at <http://symphony-cms.com/forum/>
 
 
 ## Updating
@@ -59,9 +120,10 @@ Follow the instructions below if you are updating from Symphony version 2.0 (non
 	- [Debug DevKit](http://github.com/symphony/debugdevkit/tree/master)
 	- [Profile DevKit](http://github.com/symphony/profiledevkit/tree/master)
 
-3. Run the following command to ensure the submodules are cloned:
+3. Run the following commands to ensure the submodules are cloned:
 
-		git submodule update --init
+		git submodule init
+		git submodule update
 
 4. _(Optional)_ If you would like the [default theme](http://github.com/symphony/workspace/tree) installed as well, 
 you will need to use the following command from within the Symphony 2 folder you just created:
@@ -75,7 +137,7 @@ you will need to use the following command from within the Symphony 2 folder you
 
 **Note: You can leave `/workspace` out if you do not want the default theme.**
 
-1. This step assumes you downloaded a zip archive from the [Symphony website](http://symphony-cms.com). 
+1. This step assumes you downloaded a zip archive from the [Symphony website](http://symphony21.com). 
 Upload the following files and directories to the root directory of your website:
 
 	- index.php
