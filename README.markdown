@@ -6,13 +6,34 @@ The Spectrum Members ensemble includes a modified workspace for Symphony 2.0.5. 
 - Register
 - Login
 
+### Home
+
+<a href="http://www.flickr.com/photos/bauhouse/3766014852/" title="spectrum-members-home by bauhouse, on Flickr"><img src="http://farm4.static.flickr.com/3531/3766014852_a593d3e243_o.png" width="749" height="905" alt="spectrum-members-home" /></a>
+
+### Register
+
+<a href="http://www.flickr.com/photos/bauhouse/3765221029/" title="spectrum-members-registration by bauhouse, on Flickr"><img src="http://farm4.static.flickr.com/3570/3765221029_409bf176bc_o.png" width="749" height="814" alt="spectrum-members-registration" /></a>
+
+### Login
+
+<a href="http://www.flickr.com/photos/bauhouse/3766014962/" title="spectrum-members-login by bauhouse, on Flickr"><img src="http://farm4.static.flickr.com/3500/3766014962_2fb173989b_o.png" width="749" height="661" alt="spectrum-members-login" /></a>
+
+### Retrieve Password
+
+<a href="http://www.flickr.com/photos/bauhouse/3765220793/" title="spectrum-members-retrieve-pw by bauhouse, on Flickr"><img src="http://farm3.static.flickr.com/2587/3765220793_1b695e82d7_o.png" width="749" height="661" alt="spectrum-members-retrieve-pw" /></a>
+
+### Members
+
+<a href="http://www.flickr.com/photos/bauhouse/3766015174/" title="spectrum-members-logged-in by bauhouse, on Flickr"><img src="http://farm3.static.flickr.com/2589/3766015174_5535a55918_o.png" width="749" height="399" alt="spectrum-members-logged-in" /></a>
+
+
 ## Dependencies
 
 This ensemble requires the following extensions in order for the Members extension to manage the registration, login and access control:
 
-- Advanced Symphony Database Connector Extension (<git://github.com/pointybeard/asdc/tree/master>)
-- Members Extension (<git://github.com/bauhouse/members/tree/master>)
-- Configuration Accessor Class (<git://github.com/bauhouse/library/tree/master>)
+- Advanced Symphony Database Connector Extension (<http://github.com/pointybeard/asdc/tree/master>)
+- Members Extension (<http://github.com/bauhouse/members/tree/master>)
+- Configuration Accessor Class (<http://github.com/bauhouse/library/tree/master>)
 - Reflection Link Field Extension (<http://github.com/rowan-lewis/reflectionfield/tree/master>)
 - Export Ensemble Extension - Modified for the Members Extension (<http://github.com/bauhouse/export_ensemble/tree/members>)
 
