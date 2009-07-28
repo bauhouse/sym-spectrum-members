@@ -1,8 +1,26 @@
 # Spectrum Members Core
 
-This repository has been used to assemble the submodules necessary to build the [Spectrum Ensemble](http://github.com/bauhouse/sym-barebones/tree/master). It can be assembled with the following process:
+The Spectrum workspace is a modified workspace for Symphony 2.0.5. This ensemble adds to the Spectrum theme provided in the [official workspace repository](http://github.com/symphony/workspace). The main difference here is that there are three additional pages:
+
+- Members
+- Register
+- Login
+
+## Dependencies
+
+This ensemble requires the following extensions in order for the Members extension to manage the registration, login and access control:
+
+- Advanced Symphony Database Connector Extension (<git://github.com/pointybeard/asdc/tree/master>)
+- Members Extension (<git://github.com/bauhouse/members/tree/master>)
+- Configuration Accessor Class (<git://github.com/bauhouse/library/tree/master>)
+- Reflection Link Field Extension (<http://github.com/rowan-lewis/reflectionfield/tree/master>)
+- Export Ensemble Extension - Modified for the Members Extension (<http://github.com/bauhouse/export_ensemble/tree/members>)
+
+These are included as submodules in the Spectrum Members Core repository.
 
 ### Install Symphony and Spectrum Members Workspace via Git
+
+This repository has been used to assemble the submodules necessary to build the [Spectrum Members Ensemble](http://github.com/bauhouse/sym-spectrum-members/tree/master). It can be assembled with the following process:
 
 Clone my fork of the Symphony 2 repository
 
