@@ -152,24 +152,52 @@
 		$conf = array();
 	
 		$conf['admin']['max_upload_size'] = '5242880';
+
 		$conf['symphony']['pagination_maximum_rows'] = '17';
+
 		$conf['symphony']['allow_page_subscription'] = '1';
+
 		$conf['symphony']['lang'] = 'en';
+
 		$conf['symphony']['version'] = '2.0.5';
+
 		$conf['log']['archive'] = '1';
+
 		$conf['log']['maxsize'] = '102400';
+
 		$conf['general']['sitename'] = 'Symphony CMS';
+
 		$conf['image']['cache'] = '1';
+
 		$conf['image']['quality'] = '90';
+
 		$conf['database']['driver'] = 'mysql';
+
 		$conf['database']['character_set'] = 'utf8';
+
 		$conf['database']['character_encoding'] = 'utf8';
+
 		$conf['database']['runtime_character_set_alter'] = '1';
+
 		$conf['database']['disable_query_caching'] = 'no';
+
 		$conf['public']['display_event_xml_in_source'] = 'yes';
+
 		$conf['region']['time_format'] = 'H:i';
+
 		$conf['region']['date_format'] = 'd F Y';
+
 		$conf['maintenance_mode']['enabled'] = 'no';
+	
+		$conf['members']['cookie-prefix'] = 'sym-members';
+	
+		$conf['members']['member_section'] = '7';
+	
+		$conf['members']['forgotten_pass_email_subject'] = NULL;
+	
+		$conf['members']['forgotten_pass_email_body'] = NULL;
+	
+		$conf['members']['email_address_field_id'] = '28';
 	
 		return $conf;
 	
