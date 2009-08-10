@@ -4,8 +4,8 @@
 
 		public function about(){
 			return array('name' => 'Export Ensemble',
-						 'version' => '1.8',
-						 'release-date' => '2009-07-27',
+						 'version' => '1.9',
+						 'release-date' => '2009-07-28',
 						 'author' => array('name' => 'Alistair Kearney',
 										   'website' => 'http://pointybeard.com',
 										   'email' => 'alistair@pointybeard.com')
@@ -65,18 +65,14 @@
 				'tbl_pages',
 				'tbl_pages_types',
 				'tbl_sections',
-				'tbl_sections_association',
-				'tbl_members_login_tokens',
-				'tbl_members_roles',
-				'tbl_members_roles_event_permissions',
-				'tbl_members_roles_page_permissions'
+				'tbl_sections_association'			
 			);
 			
 			## Grab the schema
 			foreach($tables as $t) $sql_schema .= $dump->export($t, MySQLDump::STRUCTURE_ONLY);
 			$sql_schema = str_replace('`' . Administration::instance()->Configuration->get('tbl_prefix', 'database'), '`tbl_', $sql_schema);
 			
-			$sql_schema = preg_replace('/AUTO_INCREMENT=\d+/i', '', $sql_schema);
+			$sql_schema = preg_replace('/AUTO_INCREMENT=\d+/i', NULL, $sql_schema);
 			
 			$tables = array(
 				'tbl_entries',
@@ -86,11 +82,7 @@
 				'tbl_pages',
 				'tbl_pages_types',
 				'tbl_sections',
-				'tbl_sections_association',
-				'tbl_members_login_tokens',
-				'tbl_members_roles',
-				'tbl_members_roles_event_permissions',
-				'tbl_members_roles_page_permissions'
+				'tbl_sections_association'			
 			);			
 			
 			## Field data and entry data schemas needs to be apart of the workspace sql dump
@@ -98,7 +90,10 @@
 			$sql_data .= $dump->export('tbl_entries_%', MySQLDump::ALL);
 			
 			## Grab the data
-			foreach($tables as $t) $sql_data .= $dump->export($t, MySQLDump::DATA_ONLY);
+			foreach($tables as $t){
+				$sql_data .= $dump->export($t, MySQLDump::DATA_ONLY);
+			}
+			
 			$sql_data = str_replace('`' . Administration::instance()->Configuration->get('tbl_prefix', 'database'), '`tbl_', $sql_data);
 			
 			$config_string = NULL;
@@ -118,7 +113,9 @@
 			unset($config['region']['timezone']);
 
 			foreach($config as $group => $set){
-				foreach($set as $key => $val) $config_string .= "		\$conf['".$group."']['".$key."'] = '".$val."';" . self::CRLF;
+				foreach($set as $key => $val){
+					$config_string .= "		\$conf['{$group}']['{$key}'] = '{$val}';" . self::CRLF;
+				}
 			}
 			
 			$install_template = str_replace(
@@ -170,7 +167,16 @@
 
 			header('Content-type: application/octet-stream');	
 			header('Expires: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-		    header('Content-disposition: attachment; filename='.Lang::createFilename($this->_Parent->Configuration->get('sitename', 'general')).'-ensemble.zip');
+			
+		    header(
+				sprintf(
+					'Content-disposition: attachment; filename=%s-ensemble.zip', 
+					Lang::createFilename(
+						Administration::instance()->Configuration->get('sitename', 'general')
+					)
+				)
+			);
+			
 		    header('Pragma: no-cache');
 		
 			readfile(TMP . '/ensemble.tmp.zip');
@@ -198,7 +204,9 @@
 			$span = new XMLElement('span');
 			
 			if(!class_exists('ZipArchive')){
-				$span->appendChild(new XMLElement('p', '<strong>Warning: It appears you do not have the "ZipArchive" class available. Ensure that PHP was compiled with <code>--enable-zip</code>'));
+				$span->appendChild(
+					new XMLElement('p', '<strong>Warning: It appears you do not have the "ZipArchive" class available. Ensure that PHP was compiled with <code>--enable-zip</code>')
+				);
 			}
 			else{
 				$span->appendChild(new XMLElement('button', 'Create', array('name' => 'action[export]', 'type' => 'submit')));	

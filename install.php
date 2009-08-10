@@ -9,10 +9,21 @@
 		return;
 	}
 
-	error_reporting(E_ALL ^ E_NOTICE);
+	if(!defined('PHP_VERSION_ID')){
+    	$version = PHP_VERSION;
+    	define('PHP_VERSION_ID', ($version{0} * 10000 + $version{2} * 100 + $version{4}));
+	}
+
+	if (PHP_VERSION_ID >= 50300){
+	    error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+	} 
+	else{
+	    error_reporting(E_ALL ^ E_NOTICE);
+	}
+	
 	set_error_handler('__errorHandler');
 
-	define('kVERSION', '2.0.5');
+	define('kVERSION', '2.0.6');
 	define('kINSTALL_ASSET_LOCATION', './symphony/assets/installer');	
 	define('kINSTALL_FILENAME', basename(__FILE__));
 	
@@ -27,7 +38,7 @@
 		$lang = NULL;
 
 		if(!empty($_REQUEST['lang'])){
-			$l = preg_replace('/[^a-zA-Z\-]/', '', $_REQUEST['lang']);
+			$l = preg_replace('/[^a-zA-Z\-]/', NULL, $_REQUEST['lang']);
 			if(file_exists("./symphony/lib/lang/lang.{$l}.php")) $lang = $l;
 		}
 
@@ -39,16 +50,20 @@
 		}
 
 		## none of browser accepted languages is available, get first available
-		if($lang === NULL){
+		if(is_null($lang)){
+			
 			## default to English
-			if(file_exists('./symphony/lib/lang/lang.en.php')) $lang = 'en';
-			else{
+			$lang = 'en';
+			
+			if(!file_exists('./symphony/lib/lang/lang.en.php')){
 				$l = Lang::getAvailableLanguages();
 				if(is_array($l) && count($l) > 0) $lang = $l[0];
 			}
 		}
 
-		if($lang === NULL) return NULL;
+		if(is_null($lang)){ 
+			return NULL;
+		}
 
 		try{
 			Lang::init('./symphony/lib/lang/lang.%s.php', $lang);
@@ -152,51 +167,28 @@
 		$conf = array();
 	
 		$conf['admin']['max_upload_size'] = '5242880';
-
 		$conf['symphony']['pagination_maximum_rows'] = '17';
-
 		$conf['symphony']['allow_page_subscription'] = '1';
-
 		$conf['symphony']['lang'] = 'en';
-
-		$conf['symphony']['version'] = '2.0.5';
-
+		$conf['symphony']['version'] = '2.0.6';
 		$conf['log']['archive'] = '1';
-
 		$conf['log']['maxsize'] = '102400';
-
 		$conf['general']['sitename'] = 'Symphony CMS';
-
 		$conf['image']['cache'] = '1';
-
 		$conf['image']['quality'] = '90';
-
 		$conf['database']['driver'] = 'mysql';
-
 		$conf['database']['character_set'] = 'utf8';
-
 		$conf['database']['character_encoding'] = 'utf8';
-
 		$conf['database']['runtime_character_set_alter'] = '1';
-
 		$conf['database']['disable_query_caching'] = 'no';
-
 		$conf['public']['display_event_xml_in_source'] = 'yes';
-
 		$conf['region']['time_format'] = 'H:i';
-
 		$conf['region']['date_format'] = 'd F Y';
-
 		$conf['maintenance_mode']['enabled'] = 'no';
-	
 		$conf['members']['cookie-prefix'] = 'sym-members';
-	
 		$conf['members']['member_section'] = '7';
-	
 		$conf['members']['forgotten_pass_email_subject'] = NULL;
-	
 		$conf['members']['forgotten_pass_email_body'] = NULL;
-	
 		$conf['members']['email_address_field_id'] = '28';
 	
 		return $conf;
